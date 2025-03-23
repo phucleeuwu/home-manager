@@ -1,12 +1,11 @@
 { config, lib, pkgs, modulePath }:
 
+with lib;
+
 let
-  inherit (lib)
-    escapeXML concatStringsSep mkOption maintainers types literalExpression;
+  bookmarkTypes = import ./bookmark-types.nix { inherit lib; };
 
   inherit (bookmarkTypes) settingsType;
-
-  bookmarkTypes = import ./bookmark-types.nix { inherit lib; };
 
   bookmarksFile = bookmarks:
     let
